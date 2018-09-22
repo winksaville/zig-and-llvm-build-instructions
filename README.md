@@ -1,11 +1,11 @@
 # zig-and-llvm-build-instructions
 
-Zig and llvm build instructions. These are instructions
+[Zig](https://ziglang.org) and [LLVM](https://llvm.org) build instructions. These are instructions
 I used for Arch Linux and may work on other linuxes.
 
 ## Prerequisets
-clang 6.0.1
-cmake 3.12
+* clang 6.0.1
+* cmake 3.12
 
 ## Build LLVM 
 I'm using [mkllvm-tool-chain](https://github.com/winksaville/mkllvm-tool-chain) to build llvm:
