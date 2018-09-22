@@ -50,21 +50,21 @@ In file included from /home/wink/llvm-gcc/include/llvm/ADT/STLExtras.h:21,
      memcpy(this->end(), &Elt, sizeof(T));
      ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
-* Build LLVM toolchain, I used [mkllvm-tool-chain](https://github.com/winksaville/mkllvm-tool-chain).
+### Build LLVM toolchain, I used [mkllvm-tool-chain](https://github.com/winksaville/mkllvm-tool-chain).
   * C=clang CXX=clang++ make llvm-7.0.0 LLVM_INSTALL_DIR=$HOME/llvm-clang
     * Currently LLVM_LINK_LLVM_DYLIB=ON is the default
     * Zig required that I build the tool chain with LLVM_LINK_LLVM_DYLIB := ON see LLVM Cmake docs for more info. When LLVM_LINK_LLVM_DYLIB is OFF (the default) then the default  will default to linking statically and zig cmake build doesn’t seem to handle statically linking zig to the llvm build tools.
 
-* Zig build makefile using cmake:
+### Zig build makefile using cmake:
   * CC=clang CXX=clang++ cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$HOME/opt -DCMAKE_PREFIX_PATH=$HOME/llvm-clang
     * CC=clang CXX=clang++				c and c++ compilers
     * cmake 							Run cmake
     * .. 							Directory with CMakeLists.txt
     * -DCMAKE_INSTALL_PREFIX=$HOME/opt		Install directory for zig
     * -DCMAKE_PREFIX_PATH=$HOME/llvm-clang	Directory where llvm was installed (LLVM_INSTALL_DIR)
-* Build Zig and install it
+### Build Zig and install it
   * ninja install
-* Optional - LD_LIBRARY_PATH if zig reports it can't find libLLVM-7.so
-  export LD_LIBRARY_PATH=$HOME/llvm-clang/lib
-* Run zig likely you'll want to add $HOME/opt/bin to your PATH but you can execute it directly too:
+### Optional - LD_LIBRARY_PATH if zig reports it can't find libLLVM-7.so
+  * export LD_LIBRARY_PATH=$HOME/llvm-clang/lib
+### Run zig likely you'll want to add $HOME/opt/bin to your PATH but you can execute it directly too:
   * ~/opt/bin/zig version
